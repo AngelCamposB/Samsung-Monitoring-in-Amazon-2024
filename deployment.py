@@ -8,17 +8,20 @@ from datetime import date
 # Database connection configuration
 def connect_to_db():
     # Supabase credentials (adjust with your actual password)
-    user = "postgres"
-    password = "BuenFin2024"  # reemplaza con la contraseña real
-    host = "db.qgmnqycqxvszgygazfqo.supabase.co"
-    port = 5432
-    database = "postgres"
-
+    # Recuperar credenciales desde Streamlit Secrets
+    user = st.secrets["postgres"]["user"]
+    password = st.secrets["postgres"]["password"]
+    host = st.secrets["postgres"]["host"]
+    port = st.secrets["postgres"]["port"]
+    database = st.secrets["postgres"]["database"]
+    pool_mode = st.secrets["postgres"]["pool_mode"]
+    
     # Create the SQLAlchemy engine for the remote Supabase database
-    # Agregar sslmode=require a la URL
-    url = f"postgresql://{user}:{password}@{host}:{port}/{database}?sslmode=require"
+    # Crear la cadena de conexión con SSL y el session pooler
+    url = f"postgresql://{user}:{password}@{host}:{port}/{database}?sslmode=require&pool_mode={pool_mode}"
     engine = create_engine(url)
     return engine
+
 
 # Load data from the database based on selected date range
 def load_data(engine, start_date, end_date):
