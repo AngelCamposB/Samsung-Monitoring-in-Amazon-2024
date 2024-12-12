@@ -6,7 +6,7 @@ import os
 def load_csv_to_postgresql():
     # Definir credenciales Supabase
     user = "postgres"
-    password = "[YOUR-PASSWORD]"  # Reemplazar con la contraseña real
+    password = "BuenFin2024"  # Reemplazar con la contraseña real
     host = "db.qgmnqycqxvszgygazfqo.supabase.co"
     port = 5432
     database = "postgres"

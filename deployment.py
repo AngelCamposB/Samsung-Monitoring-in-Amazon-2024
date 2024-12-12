@@ -7,11 +7,15 @@ from datetime import date
 
 # Database connection configuration
 def connect_to_db():
-    # Adjust credentials to your environment
-    db_name = "amazon_data"
+    # Supabase credentials (adjust with your actual password)
     user = "postgres"
-    password = "5354"
-    engine = create_engine(f"postgresql://{user}:{password}@localhost:5432/{db_name}")
+    password = "BuenFin2024"  # reemplaza con la contraseña real
+    host = "db.qgmnqycqxvszgygazfqo.supabase.co"
+    port = 5432
+    database = "postgres"
+
+    # Create the SQLAlchemy engine for the remote Supabase database
+    engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}")
     return engine
 
 # Load data from the database based on selected date range
