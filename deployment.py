@@ -7,6 +7,7 @@ from datetime import date
 
 # Database connection configuration
 def connect_to_db():
+    '''
     # Supabase credentials (adjust with your actual password)
     user = st.secrets["postgres"]["user"]
     password = st.secrets["postgres"]["password"]
@@ -17,6 +18,10 @@ def connect_to_db():
     # Crear la cadena de conexión sin pool_mode y con sslmode=require
     url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
     engine = create_engine(url)
+    '''
+    
+    conString=st.secrets["conString"]
+    engine = create_engine(conString)
     return engine
 
 # Load data from the database based on selected date range
