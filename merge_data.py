@@ -58,7 +58,7 @@ def process_csv_files(folder_path, output_folder):
     return combined_data
 
 # Uso
-folder_path = r"C:\Users\Angel\Documents\Programacion\Amazon\cleaned_data"
-output_folder = r"C:\Users\Angel\Documents\Programacion\Amazon\dataset"
+folder_path = r"C:\Users\Angel\Documents\Programacion\Samsung Monitoring in Amazon 2024\cleaned_data"
+output_folder = r"C:\Users\Angel\Documents\Programacion\Samsung Monitoring in Amazon 2024\dataset"
 
 combined_data = process_csv_files(folder_path, output_folder)

@@ -15,8 +15,8 @@ def clean_and_convert(value):
         return None  # Manejar valores no numéricos
 
 # Rutas de las carpetas
-ruta_carpeta = r"C:\Users\Angel\Documents\Programacion\Amazon\raw_data"
-ruta_carpeta_cleaned = r"C:\Users\Angel\Documents\Programacion\Amazon\cleaned_data"
+ruta_carpeta = r"C:\Users\Angel\Documents\Programacion\Samsung Monitoring in Amazon 2024\raw_data"
+ruta_carpeta_cleaned = r"C:\Users\Angel\Documents\Programacion\Samsung Monitoring in Amazon 2024\cleaned_data"
 
 # Crear carpeta cleaned_data si no existe
 if not os.path.exists(ruta_carpeta_cleaned):
