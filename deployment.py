@@ -15,7 +15,9 @@ def connect_to_db():
     database = "postgres"
 
     # Create the SQLAlchemy engine for the remote Supabase database
-    engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}")
+    # Agregar sslmode=require a la URL
+    url = f"postgresql://{user}:{password}@{host}:{port}/{database}?sslmode=require"
+    engine = create_engine(url)
     return engine
 
 # Load data from the database based on selected date range
