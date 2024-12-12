@@ -1,0 +1,9 @@
+beautifulsoup4==4.12.3
+numpy==2.2.0
+pandas==2.2.3
+plotly==5.24.1
+psycopg2==2.9.10
+selenium==4.27.1
+SQLAlchemy==2.0.36
+streamlit==1.39.0
+webdriver_manager==4.0.2
