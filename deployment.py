@@ -15,7 +15,7 @@ def connect_to_db():
     database = st.secrets["postgres"]["database"]
     
     # Crear la cadena de conexión sin pool_mode y con sslmode=require
-    url = f"postgresql://{user}:{password}@{host}:{port}/{database}?sslmode=require"
+    url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
     engine = create_engine(url)
     return engine
 
