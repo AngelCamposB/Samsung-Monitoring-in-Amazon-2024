@@ -20,7 +20,7 @@ def connect_to_db():
     engine = create_engine(url)
     '''
     
-    conString=st.secrets["conString"]
+    conString = st.secrets["general"]["conString"]
     engine = create_engine(conString)
     return engine
 
