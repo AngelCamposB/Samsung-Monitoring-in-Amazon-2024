@@ -9,25 +9,20 @@ from datetime import date
 def connect_to_db():
     
     # Supabase credentials (adjust with your actual password)
-    user = st.secrets["user"]
-    password = st.secrets["password"]
-    host = st.secrets["host"]  # Usar el host externo
-    port = st.secrets["port"]
-    database = st.secrets["database"]
-
-    '''user = st.secrets["postgres"]["user"]
+    user = st.secrets["postgres"]["user"]
     password = st.secrets["postgres"]["password"]
     host = st.secrets["postgres"]["host"]  # Usar el host externo
     port = st.secrets["postgres"]["port"]
-    database = st.secrets["postgres"]["database"]'''
+    database = st.secrets["postgres"]["database"]
+
+    #'''TEXTO DE PRUEBA - NO DEBE VERSE'''
+
     
     # Crear la cadena de conexión sin pool_mode y con sslmode=require
     url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
     engine = create_engine(url)
     
-    '''
-    conString = st.secrets["general"]["conString"]
-    engine = create_engine(conString)'''
+   
 
     return engine
 
