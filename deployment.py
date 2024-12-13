@@ -15,26 +15,31 @@ def connect_to_db():
     port = st.secrets["postgres"]["port"]
     database = st.secrets["postgres"]["database"]
 
-    #'''TEXTO DE PRUEBA - NO DEBE VERSE'''
 
-    
     # Crear la cadena de conexión sin pool_mode y con sslmode=require
-    url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
-    engine = create_engine(url)
-    
-   
+    #url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
+    #engine = create_engine(url)
 
-    return engine
+    # Establecer la conexión utilizando psycopg2 con SSL
+    conn = psycopg2.connect(
+        dbname=database,
+        user=user,
+        password=password,
+        host=host,
+        port=port,
+        sslmode='require'  # Asegura que la conexión utilice SSL
+    )
+    return conn
 
 # Load data from the database based on selected date range
-def load_data(engine, start_date, end_date):
     # Only select products with discount_amount > 0 to focus on those with promotions
+def load_data(conn, start_date, end_date):
     query = f"""
     SELECT *
     FROM productos_amazon
-    WHERE date >= '{start_date}' AND date <= '{end_date}' AND discount_amount > 0;
+    WHERE date >= %s AND date <= %s AND discount_amount > 0;
     """
-    df = pd.read_sql(query, engine)
+    df = pd.read_sql(query, conn, params=(start_date, end_date))
     return df
 
 def main():
@@ -44,7 +49,8 @@ def main():
 
     # Database Connection
     st.sidebar.subheader("Database Connection")
-    engine = connect_to_db()
+    # Conectar a la base de datos
+    conn = connect_to_db()
     st.sidebar.success("Connected to the database")
 
     # Date Filters
@@ -56,7 +62,7 @@ def main():
 
     # Load and display data
     st.sidebar.subheader("Data Loading")
-    df = load_data(engine, start_date, end_date)
+    df = load_data(conn, start_date, end_date) #conn / engine
     st.sidebar.success("Data loaded successfully!")
 
     if df.empty:
@@ -330,6 +336,10 @@ def main():
         
         Monitoring this continuously can help adjust long-term discount strategies.
         """)
+
+
+    # Cerrar la conexión
+    conn.close()
 
 if __name__ == "__main__":
     main()
