@@ -8,10 +8,10 @@ from datetime import date
 # Database connection configuration
 def connect_to_db():
     
-    # Supabase credentials (adjust with your actual password)
+    # Supabase credentials
     user = st.secrets["postgres"]["user"]
     password = st.secrets["postgres"]["password"]
-    host = st.secrets["postgres"]["host"]  # Usar el host externo
+    host = st.secrets["postgres"]["host"] 
     port = st.secrets["postgres"]["port"]
     database = st.secrets["postgres"]["database"]
 

@@ -1,15 +1,16 @@
 import pandas as pd
 from sqlalchemy import create_engine
 from datetime import datetime
+import streamlit as st
 import os
 
 def load_csv_to_postgresql():
     # Definir credenciales Supabase
-    user = "postgres"
-    password = "BuenFin2024"  # Reemplazar con la contraseña real
-    host = "db.qgmnqycqxvszgygazfqo.supabase.co"
-    port = 5432
-    database = "postgres"
+    user = st.secrets["postgres"]["user"]
+    password = st.secrets["postgres"]["password"]
+    host = st.secrets["postgres"]["host"] 
+    port = st.secrets["postgres"]["port"]
+    database = st.secrets["postgres"]["database"]
 
     # Generar el nombre del archivo en función del timestamp requerido
     # Ejemplo: data_unificada - Nov14 - 10PM.csv

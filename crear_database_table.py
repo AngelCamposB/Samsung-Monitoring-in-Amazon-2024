@@ -1,11 +1,14 @@
 import psycopg2
+import streamlit as st
 
 def create_database_and_table():
     # Cambia 'tu_usuario' y 'tu_contraseña' por tus credenciales correctas
-    user = "postgres"  
-    password = "5354"
-    host = "localhost"
-    port = "5432"
+        # Supabase credentials (adjust with your actual password)
+    user = st.secrets["postgres"]["user"]
+    password = st.secrets["postgres"]["password"]
+    host = st.secrets["postgres"]["host"] 
+    port = st.secrets["postgres"]["port"]
+    #database = st.secrets["postgres"]["database"]
     
     # Conectar al servidor PostgreSQL
     try:

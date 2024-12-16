@@ -17,6 +17,7 @@ archivos = [
     "Scraping_Amazon.py",
     "cleaning_data.py",
     "merge_data.py",
+    "crear_database_table",
     "load_to_database.py",
     "deployment.py"
 ]
